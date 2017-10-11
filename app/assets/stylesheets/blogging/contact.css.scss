@@ -1,0 +1,38 @@
+#map {
+    height: 300px;
+    width: 100%;
+    margin: 10px;
+}
+
+.subscribe {
+    background: white none repeat scroll 0 0;
+    border-radius: 5px;
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.5);
+    margin: 10px auto;
+    padding: 0;
+}
+
+.subscribe-form {
+    background: #fafafa linear-gradient(to bottom, #fafafa, #eaeaea 50%, #e1e1e1 51%, #f2f2f2) repeat scroll 0 0;
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 1px white inset;
+    padding: 15px;
+    position: relative;
+  button {
+    padding-bottom: 5px;
+  }
+}
+
+.subscribe-pitch {
+  padding: 10px;
+  h3 {
+    margin: 0 0 10px 0;
+  }
+}
+
+.blog-navigation {
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
+}

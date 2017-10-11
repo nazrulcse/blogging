@@ -1,0 +1,45 @@
+<div class="blog-item boxed push-down-45">
+  <div class="meta">
+    <%= image_tag(post.image_url(:large), :class => 'wp-post-image') %>
+    <div class="meta__container">
+      <div class="row">
+        <div class="col-xs-12  col-sm-8">
+          <div class="meta__info">
+          <span class="meta__author">
+            <%= image_tag(get_user_photo(post.user), :height => 30, :width => 30) %>
+            <%= link_to get_user_name(post.user), author_profile_path(post.user_id) %> in
+            <%= link_to post.category.name, category_path(post.category.name) %>
+          </span>
+            <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span>
+              <%= post.created_at.strftime("%b %d, %Y") %></span>
+          </div>
+        </div>
+        <div class="col-xs-12  col-sm-4">
+          <div class="meta__comments">
+            <%= link_to blog_path(post.slug) + '#comments' do %>
+              <%= post.comments.count %> <span class="glyphicon glyphicon-comment"></span>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1">
+      <div class="post-content--front-page">
+        <h2 class="front-page-title"><%= link_to post.title, blog_path(post.slug) %></h2>
+        <%= raw(post.description) %>
+        <%#= truncate_html(post.description, :length => 600) %>
+      </div>
+      <%= link_to blog_path(post.slug), :class => 'nbtmore-link' do %>
+          <div class="read-more">
+            Continue reading
+            <div class="read-more__arrow">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

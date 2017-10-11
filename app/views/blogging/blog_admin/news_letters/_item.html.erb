@@ -1,0 +1,18 @@
+<% if subscribe.id.present? %>
+<tr id="sub-<%= subscribe.id %>">
+  <td>
+    <%= subscribe.id %>
+  </td>
+  <td>
+    <%= subscribe.email %>
+  </td>
+  <td>
+    <%= subscribe.created_at.strftime('%A %B, %Y') %>
+  </td>
+  <td class="admin-actions">
+    <%= link_to blog_admin_news_letter_path(subscribe), :method => :delete, :data => {:remote => true, :confirm => 'Are you sure?'} do %>
+        <i class="fa fa-times-circle"></i>
+    <%end%>
+  </td>
+</tr>
+<%end%>

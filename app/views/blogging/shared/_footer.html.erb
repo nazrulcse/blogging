@@ -1,0 +1,54 @@
+<div class="col-lg-12 no-padding">
+  <footer class="footer">
+    <div class="container">
+      <div class="col-xs-12  col-md-3">
+        <div class="widget-about widget-tags">
+          <h6> Contact Us </h6>
+          <hr>
+          <%= raw Blogging::BlogAdmin::Setting.contact_us %>
+
+          <hr>
+
+          <h6>Navigation</h6>
+          <hr>
+          <%= raw Blogging::BlogAdmin::Setting.navigation_widget %>
+        </div>
+      </div>
+      <div class="col-xs-12  col-md-3">
+        <div class="tags widget-tags">
+          <h6>Twitter Feed</h6>
+          <hr>
+          <%= raw(Blogging::BlogAdmin::Setting.twitter_feed) %>
+        </div>
+      </div>
+      <div class="col-xs-12  col-md-3">
+        <nav class="widget-navigation  push-down-30">
+          <h6>News Letter</h6>
+          <hr>
+          <%= raw Blogging::BlogAdmin::Setting.subscribe %>
+        </nav>
+      </div>
+      <div class="col-xs-12  col-md-3">
+        <div class="widget-facebook widget-tags">
+          <h6> Facebook Page </h6>
+          <hr>
+          <%= raw Blogging::BlogAdmin::Setting.facebook_adds %>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="copyrights">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12  col-sm-6">
+          <%= link_to Blogging::BlogAdmin::Setting.key_site_name, Blogging::BlogAdmin::Setting.key_site_url %> &copy; Copyright 2015.
+        </div>
+        <div class="col-xs-12  col-sm-6">
+          <div class="copyrights--right">
+            Powered by <a href="http://www.cybersolutions.io" target="_blank">Cyber Solutions</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

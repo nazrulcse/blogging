@@ -1,0 +1,31 @@
+<tr>
+  <td>
+   <%= page.id %>
+  </td>
+  <td>
+    <%= page.title %>
+  </td>
+  <td>
+    <%= page.slug %>
+  </td>
+  <td>
+    <%= page.keyword %>
+  </td>
+  <td>
+    <%= page.menu %>
+  </td>
+  <td>
+    <%= raw truncate_html(page.content, :length => 150, :omission => '...') %>
+  </td>
+  <td class="admin-actions">
+    <%= link_to blog_admin_page_path(page) do %>
+     <i class="fa fa-eye"></i>
+    <%end%>
+    <%= link_to edit_blog_admin_page_path(page) do %>
+     <i class="fa fa-edit"></i>
+    <%end%>
+    <%= link_to blog_admin_page_path(page), :method => :delete, :data => {:confirm => 'Are you sure?'} do %>
+        <i class="fa fa-times-circle"></i>
+    <%end%>
+  </td>
+</tr>

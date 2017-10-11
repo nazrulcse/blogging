@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="<%= @meta_keyword.present? ? @meta_keyword : Blogging::BlogAdmin::Setting.key_meta_keyword %>">
+  <meta name="description" content="<%= @meta_description.present? ? @meta_description : Blogging::BlogAdmin::Setting.key_meta_description %>">
+  <meta name="author" content="Dropresume">
+  <meta name="google-site-verification" content="QVKfOTF-hm_h1GiBL0FDg2OLTJK7Q67vaCUicCmvZzo"/>
+  <title><%= @page_title.present? ? @page_title : Blogging::BlogAdmin::Setting.key_site_title %></title>
+
+  <%= stylesheet_link_tag 'blogging/application', media: 'all' %>
+  <%= javascript_include_tag 'blogging/application' %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+      WebFontConfig = {
+          google: {families: ['Open+Sans:300,400,700:latin', 'Lato:700,900:latin']}
+      };
+      (function () {
+          var wf = document.createElement('script');
+          wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+          wf.type = 'text/javascript';
+          wf.async = 'true';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wf, s);
+      })();
+  </script>
+</head>
+
+<body class="<%= "#{params[:controller]} #{params[:action]}" %>">
+<header class="header push-down-45">
+  <%= render 'blogging/shared/top_nav' %>
+</header>
+
+<div class="container clearfix">
+  <div class="row">
+    <div class="alert" id="notification"></div>
+    <%= yield %>
+  </div>
+</div>
+<%= render 'blogging/shared/footer' %>
+</body>
+<script type="text/javascript">
+    $(function () {
+        <% flash.each do |key, msg| %>
+        popupMessage("<%= msg %>", "<%= key == 'error' ? 'alert-danger' : 'alert-warning'  %>");
+        <%end%>
+    });
+</script>
+</html>

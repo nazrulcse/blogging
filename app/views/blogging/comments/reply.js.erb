@@ -1,0 +1,8 @@
+var comment_parent = $('#comments-<%= @comment.id %>').parent('li');
+if(comment_parent.find('ul').length > 0) {
+    comment_parent.find('ul').append("<li> <%= escape_javascript(render 'blogging/comments/comment_item', :comment => @reply).html_safe %> </li>")
+}
+else {
+    comment_parent.append("<ul> <li> <%= escape_javascript(render 'blogging/comments/comment_item', :comment => @reply).html_safe %> </ul></li>")
+}
+$('.write-reply').hide();

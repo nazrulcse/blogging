@@ -1,0 +1,26 @@
+<%= form_for Blogging::Comment.new, remote: true do |f| %>
+    <div class="comments-form">
+      <div class="field form-group">
+        <%= f.hidden_field :blog_id, {:value => @blog.id} %>
+        <%= f.text_area :comment, :class => 'form-control', :placeholder => 'Write your comments here' %>
+      </div>
+      <div class="form-group pull-right">
+        <%= f.submit class: "btn btn-default" %>
+      </div>
+    </div>
+<% end %>
+
+<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            plugins: [
+                "emoticons template paste textcolor colorpicker textpattern imagetools"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | emoticons",
+            image_advtab: true
+        });
+    })
+</script>

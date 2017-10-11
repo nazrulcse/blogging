@@ -1,0 +1,2 @@
+$('.comments-list').append("<li><%= escape_javascript(render 'blogging/comments/comment_item', :comment => @comment).html_safe %></li>");
+$('#comment_comment').val('');

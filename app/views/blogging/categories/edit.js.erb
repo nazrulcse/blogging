@@ -1,0 +1,3 @@
+$('.category-form').html("<%= escape_javascript(render 'blogging/categories/form', :category => @category).html_safe %>");
+$('.category-list li').removeClass('active');
+$("#cat-<%= @category.id %>").addClass('active');

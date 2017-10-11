@@ -1,0 +1,6 @@
+<%= form_for category, :remote => true do |f| %>
+    <%= f.text_field :name, :class => 'form-control', :placeholder => 'Category Name' %>
+    <div class="actions pull-right" style="margin-top: 10px;">
+      <%= f.submit :class => 'btn btn-default' %>
+    </div>
+<% end %>

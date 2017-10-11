@@ -1,0 +1,1 @@
+Blogging.decorate_user_class! if Blogging.user_class.present?

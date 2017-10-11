@@ -1,0 +1,89 @@
+<div class="blog-posts hfeed">
+  <div class="date-outer">
+    <div class="date-posts">
+      <div class="post-outer">
+        <div class="post timeline-item uncustomized-post-template">
+          <%= link_to blog_path(post.slug) do %>
+              <%= image_tag post.image_url(:large), :class => 'enclosure image' %>
+          <%end%>
+          <div class="arrow-left"></div>
+          <h3 itemprop="name" class="post-title entry-title">
+            <%= link_to post.title, blog_path(post.slug)%>
+          </h3>
+
+          <div class="post-header">
+            <ul class="post-header-line-1">
+              <li class="date-header">
+                <span>
+                  <div class="month"> <%= post.created_at.strftime('%b') %> </div>
+                  <div class="day"> <%= post.created_at.strftime('%d') %> </div>
+                </span>
+              </li>
+              <li class="post-author">
+                <%= link_to author_profile_path(1) do %>
+                    <%= image_tag('blogging/body.png') %>
+                <%end%>
+              </li>
+              <li class="commenting">
+                 <span class="comment-num">
+                   <%= link_to blog_path(post.slug) << '#comments', :class => 'comment-link' do %>
+                     <%= post.comments.count %>
+                   <%end%>
+                 </span>
+              </li>
+            </ul>
+          </div>
+          <div class="post-body entry-content">
+            <p>
+              <%= raw truncate_html(post.description, :length => 300, :omission => '...') %>
+            </p>
+            <div class="clear"></div>
+          </div>
+          <div class="post-footer">
+            <ul class="post-footer-line post-footer-line-1">
+              <li class="blogthis">
+                <a title="BlogThis!" target="_blank" onclick="return false;" href="https://www.blogger.com/share-post.g?blogID=4011569928424474212&amp;postID=7965014534792533137&amp;target=blog" class="reblog">Reblog</a>
+              </li>
+            </ul>
+            <ul class="post-footer-line post-footer-line-2">
+              <li class="post-labels">
+                <strong>Labels:</strong>
+                <%= post_tag_list(post.tag_list) %>
+              </li>
+            </ul>
+            <ul class="post-footer-line post-footer-line-3">
+              <li class="post-share-buttons goog-inline-block">
+                <div class="share-wrapper">
+                  <div class="title" style="margin-bottom: 5px;">&mdash; Share It &mdash;</div>
+                  <ul class="entry-share-list clearfix time-line-share">
+                    <li class="facebook_share">
+                      <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://www.facebook.com/sharer.php?u=<%= blog_url(post.slug) %>&title=<%= post.title %>">
+                        <span class="share-text"><i class="fa fa-facebook"></i>Facebook</span></a>
+                    </li>
+                    <li class="twitter_share">
+                      <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://twitter.com/share?url=<%= blog_url(post.slug) %>&amp;title=<%= post.title %>"><i class="fa fa-twitter"></i>
+                        <span class="share-text">Twitter</span></a>
+                    </li>
+                    <li class="google_share">
+                      <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="https://plus.google.com/share?url=<%= blog_url(post.slug) %>&amp;title=<%= post.title %>"><i class="fa fa-google-plus"></i><span class="share-text">Google+</span></a>
+                    </li>
+                    <li class="linkedin_share">
+                      <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<%= blog_url(post.slug) %>&amp;title=<%= post.title %>"><i class="fa fa-linkedin"></i><span class="share-text">Linkedin</span></a>
+                    </li>
+                    <li class="pinterest_share">
+                      <a rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://pinterest.com/pin/create/button/?url=<%= blog_url(post.slug) %>&amp;media=http://4.bp.blogspot.com/-mZo6l0sTNK4/VV9LoDZxTSI/AAAAAAAABYE/VF631a6dTac/s72-c/30f11b261ba3bae82e4410e078f43e59.jpg&amp;description=<%= post.title %>"><i class="fa fa-pinterest"></i><span class="share-text">Pin It</span></a>
+                    </li>
+                  </ul>
+                </div>
+                <!--<a title="Email This" target="_blank" href="https://www.blogger.com/share-post.g?blogID=4011569928424474212&amp;postID=7965014534792533137&amp;target=email" class="goog-inline-block share-button sb-email"><span class="share-button-link-text">Email This</span></a>,-->
+                <!--<a title="Share to Twitter" target="_blank" href="https://www.blogger.com/share-post.g?blogID=4011569928424474212&amp;postID=7965014534792533137&amp;target=twitter" class="goog-inline-block share-button sb-twitter"><span class="share-button-link-text">Share to Twitter</span></a>,-->
+                <!--<a title="Share to Facebook" target="_blank" onclick="return false;" href="https://www.blogger.com/share-post.g?blogID=4011569928424474212&amp;postID=7965014534792533137&amp;target=facebook" class="goog-inline-block share-button sb-facebook"><span class="share-button-link-text">Share to Facebook</span></a>-->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- google_ad_section_end -->
+</div>

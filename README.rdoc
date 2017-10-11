@@ -1,0 +1,25 @@
+= Blogror
+
+Blogror is an engine for Rails that aims to be the best little blogging system ever. The end goal is to have an engine that can be dropped into an application that provides the basic functionality of Blog, posts, comments. Interactive admin panel provide semi CMS functionality. User can create page, post, category, site settings, manage blogging and lots of functionality. 
+
+= Demo
+
+A demo application can be found at http://blogror.com, and the source for this application can be found on the demo_blogror.com repository.
+
+= Installation
+
+Installing Blogror is easy. We assume you already have user model into your application and also installed devise into your application.
+
+= Specify Gem dependencies
+  gem 'blogging', :github => "codeeffic/blogror"
+
+= Run the installer
+
+  Ensure that you first of all have a User model and some sort of authentication system set up. 
+We would recommend going with Devise, but it's up to you. All Blogror needs is a model to link blog, post, comments, etc.
+
+Run the installer and answer any questions that pop up. There's sensible defaults there if you don't want to answer them.
+
+rails g blogging:install
+
+Engine default mount to /blogs, you can change it from your routes.rb file. To run your blog, restart server and navigate to /blogs. You can found more configuration at config/initializer/blogging.rb. To access blog admin navigate to /blogs/blog_admin. Blogror determine blog admin from the field of 'is_blog_admin' at your user table.  

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li class="active">Pages</li>
+    </ol>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Keyword</th>
+        <th>Menu</th>
+        <th>Content</th>
+        <th> Action </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @pages.each do |page| %>
+          <%= render 'blogging/blog_admin/pages/item', :page => page %>
+      <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

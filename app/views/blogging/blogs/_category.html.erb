@@ -1,0 +1,3 @@
+<% Blogging::Category.all.each do |category| %>
+    <li><a href="<%= category_path(category) %>"><%= category.name %> &nbsp;<span class="widget-categories__text">(<%= category.blogs.count %>)</span></a></li>
+<% end %>

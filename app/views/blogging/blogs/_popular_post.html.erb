@@ -1,0 +1,7 @@
+<div class="push-down-15">
+  <%= image_tag(post.image_url(:small)) %>
+  <h5>
+    <%= link_to post.title, blog_path(post.slug) %>
+  </h5>
+  <span class="widget-posts__time"> <%= time_ago_in_words(post.created_at) %> ago </span>
+</div>

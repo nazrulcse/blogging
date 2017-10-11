@@ -1,0 +1,3 @@
+$("#cat-<%= @category.id %> .cat-name").text("<%= @category.name %>");
+$('.category-form').html("<%= escape_javascript(render 'blogging/categories/form', :category => Blogging::Category.new).html_safe %>");
+$("#cat-<%= @category.id %>").removeClass('active');

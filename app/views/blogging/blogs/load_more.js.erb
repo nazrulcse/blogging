@@ -1,0 +1,9 @@
+if (<%= @blogs.present? %>) {
+    <% @blogs.each do |blog| %>
+    $('#blog-lists').append("<%= escape_javascript(render 'blogging/blogs/item', :post => blog) %>");
+    <%end%>
+    $('.loading-more').hide();
+}
+else {
+    $('.loading-more').html('No more blog to load')
+}

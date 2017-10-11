@@ -1,0 +1,99 @@
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+  <form role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+  </form>
+  <ul class="nav menu">
+    <li class="<%= current_menu('dashboard', controller_name) %>">
+      <%= link_to blog_admin_root_path do %>
+          <i class="fa fa-dashboard"></i> Dashboard
+      <% end %>
+    </li>
+    <li class="<%= current_menu('settings', controller_name) %>">
+      <%= link_to blog_admin_settings_path do %>
+          <i class="fa fa-gear"></i> Settings
+      <% end %>
+    </li>
+    <li class="parent <%= current_menu('posts', controller_name) %>">
+      <a href="#sub-item-post" data-toggle="collapse">
+        <i class="fa fa-book"></i> Blog Posts
+        <i class="icon pull-right">
+          <em class="fa fa-plus-square"></em>
+        </i>
+      </a>
+      <ul class="children collapse" id="sub-item-post">
+        <li>
+          <%= link_to blog_admin_posts_path do %>
+              <i class="fa fa-eye"></i> All Blog Posts
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_blog_admin_post_path do %>
+              <i class="fa fa-plus"></i> Create Blog Posts
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="parent <%= current_menu('pages', controller_name) %>">
+      <a href="#sub-item-page" data-toggle="collapse">
+        <i class="fa fa-file"></i> Pages
+        <i class="icon pull-right">
+          <em class="fa fa-plus-square"></em>
+        </i>
+      </a>
+      <ul class="children collapse" id="sub-item-page">
+        <li>
+          <%= link_to blog_admin_pages_path do %>
+              <i class="fa fa-eye"></i> All Pages
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_blog_admin_page_path do %>
+              <i class="fa fa-plus"></i> Create Pages
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="parent <%= current_menu('widgets', controller_name) %>">
+      <a href="#sub-item-widget" data-toggle="collapse">
+        <i class="fa fa-th-large"></i> Widget
+        <i class="icon pull-right">
+          <em class="fa fa-plus-square"></em>
+        </i>
+      </a>
+      <ul class="children collapse" id="sub-item-widget">
+        <li>
+          <%= link_to blog_admin_widgets_path do %>
+              <i class="fa fa-eye"></i> All Widget
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_blog_admin_widget_path do %>
+              <i class="fa fa-plus"></i> Create Widget
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="<%= current_menu('news_letters', controller_name) %>">
+      <%= link_to blog_admin_news_letters_path do %>
+          <i class="fa fa-list-alt"> </i> News Letter
+      <%end%>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-share-square"></i> Others </a>
+    </li>
+    <li role="presentation" class="divider"></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+      var parent_li = $('.children').parents('li.parent');
+      $.each(parent_li, function(key, element) {
+          if($(element).hasClass('active')) {
+              $(element).find('.children').addClass('in');
+          }
+      });
+  });
+</script>

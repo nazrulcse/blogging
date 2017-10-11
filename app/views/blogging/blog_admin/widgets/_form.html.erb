@@ -1,0 +1,25 @@
+<%= form_for @widget do |f| %>
+    <ul>
+      <% @widget.errors.each do |key, msg| %>
+          <li>
+            <code> <%= key %> : <%= msg %> </code>
+          </li>
+      <% end %>
+    </ul>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => 'form-control' %>
+      <code> Widget name should be single word containing _ or number </code>
+    </div>
+    <div class="form-group">
+      <%= f.label :attr_type, "Type" %>
+      <%= f.select :attr_type, options_for_select([["Html", 'html'], ['Rails', 'rb']], f.object.attr_type), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, :class => 'form-control', :style => 'height: 350px;' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :class => 'btn btn-default' %>
+    </div>
+<% end %>

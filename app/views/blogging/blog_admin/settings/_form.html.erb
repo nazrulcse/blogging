@@ -1,0 +1,31 @@
+<%= form_for setting, :remote => true do |f| %>
+<div class="clearfix">
+  <div class="form-group">
+   <%= f.label :key, 'Settings Key' %>
+    <%= f.text_field :key, :class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :value, 'Settings Value' %>
+    <div id="attr_field">
+      <%= attr_field(f, f.object.attr, 'form-control') %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :value, 'Settings Attributes' %>
+    <%= f.select :attr, options_for_select(Blogging::BlogAdmin::Setting::ATTR.collect{|key, val| [val, key]}), {:prompt => 'Select Attributes'}, {:class => 'form-control'} %>
+  </div>
+  <div class="clearfix">
+    <%= f.submit :class => 'btn btn-default pull-right' %>
+  </div>
+</div>
+<%end%>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+    $('#blog_admin_setting_attr').change(function() {
+       if($(this).val() != '') {
+          //$("#attr_field").html("<%#= raw(attr_field(@obj, @obj.object.attr, 'form-control')) %>")
+       }
+    });
+})
+</script>

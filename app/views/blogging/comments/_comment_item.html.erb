@@ -1,0 +1,24 @@
+<div class='comments-item-wrapper clearfix' id='comments-<%= comment.id %>' data-comments-id='<%= comment.id %>'>
+  <div class='comment-body'>
+    <div class="badge">
+      <%= time_ago_in_words(comment.created_at) %> ago
+    </div>
+    <div>
+      <%= raw(comment.comment) %>
+    </div>
+    <div class='comments-reply'>
+      <%= link_to "javascript:void(0);", :class => 'reply btn btn-default', :data => {:comment => comment.id} do %>
+          <i class='fa fa-reply'> </i>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='write-reply'>
+    <textarea class='reply_input form-control' placeholder="Write your reply..."></textarea>
+
+    <div class="form-group pull-right reply-btn-grp">
+      <%= button_tag 'Cancel', class: 'btn btn-default reply-cancel' %>
+      <%= button_tag 'Reply', class: 'btn btn-default reply-save', :data => {:comment => comment.id} %>
+    </div>
+  </div>
+</div>

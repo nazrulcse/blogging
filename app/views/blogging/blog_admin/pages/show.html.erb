@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li>
+    <%= link_to blog_admin_pages_path do %>
+        <i class="fa fa-file"></i>
+    <% end %>
+  </li>
+  <li class="active"> <%= @page.menu %> </li>
+  <li class="pull-right">
+    <%= link_to page_path(@page.slug), :class => '', :target => '_blank' do %>
+        <i class="fa fa-eye"></i> View Site
+    <% end %>
+  </li>
+</ol>
+<iframe src="<%= page_path(@page.slug) %>" class="page"></iframe>

@@ -1,0 +1,7 @@
+if(<%= @setting.errors.any? %>) {
+    alert('Unable to update');
+}
+else {
+    $("#settings-list tbody #setting-<%= @setting.id %>").replaceWith("<%= escape_javascript(render 'blogging/blog_admin/settings/item', :setting => @setting) %>");
+    $('#settings-modal').modal('hide');
+}

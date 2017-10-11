@@ -1,0 +1,14 @@
+<tr id="setting-<%= setting.id %>">
+  <td> <%= setting.key %> </td>
+  <td> <%= setting.value %> </td>
+  <td>
+    <div class="admin-actions pull-right">
+      <%= link_to edit_blog_admin_setting_path(setting), :remote => true do %>
+          <i class="fa fa-edit"></i>
+      <%end%>
+      <%= link_to blog_admin_setting_path(setting), :method => :delete, :remote => true do %>
+          <i class="fa fa-times-circle"></i>
+      <%end%>
+    </div>
+  </td>
+</tr>

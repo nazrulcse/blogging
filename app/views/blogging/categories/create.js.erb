@@ -1,0 +1,7 @@
+if(<%= @category.errors.any? %>) {
+    alert('Unable to create category');
+}
+else {
+    $('.category-list').append("<%= escape_javascript(render 'blogging/categories/actions', :category => @category).html_safe %>");
+    $('.category-form').html("<%= escape_javascript(render 'blogging/categories/form', :category => Blogging::Category.new).html_safe %>");
+}

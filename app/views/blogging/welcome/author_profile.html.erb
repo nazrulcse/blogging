@@ -1,0 +1,20 @@
+<div id="timeline" class="outer-wrapper col-lg-10 col-lg-offset-1">
+  <div class="content-wrapper">
+    <div class="main-wrapper">
+      <div id="main" class="main section">
+        <div id="Blog1" class="widget Blog">
+          <% @blogs.each do |post| %>
+           <%= render 'blogging/welcome/time_line_item', :post => post %>
+          <%end%>
+          <div id="blog-pager" class="blog-pager">
+            <%= link_to blogging.root_path, :class => 'btn btn-default' do %>
+              <i class="fa fa-home"></i> Home
+            <%end%>
+            <a href="http://timeline-dzignine.blogspot.in/" class="home-link">Home</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

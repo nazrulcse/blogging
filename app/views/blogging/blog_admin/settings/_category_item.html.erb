@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Category List</div>
+  <div class="panel-body">
+    <ul class="category-list">
+      <% @categories.each do |category| %>
+          <%= render 'blogging/categories/actions', :category => category %>
+      <% end %>
+    </ul>
+    <div class='field category-form'>
+      <%= render 'blogging/categories/form', category: Blogging::Category.new %>
+    </div>
+  </div>
+  <div class="panel-footer">
+  </div>
+</div>

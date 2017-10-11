@@ -1,0 +1,31 @@
+<tr>
+  <td>
+    <%= post.id %>
+  </td>
+  <td>
+    <%= post.title %>
+  </td>
+  <td>
+    <%= post.category.name if post.category.present? %>
+  </td>
+  <td>
+    <%= raw truncate_html(post.description, :length => 150, :omission => '...') %>
+  </td>
+  <td>
+    <%= image_tag(post.image_url(:small)) %>
+  </td>
+  <td>
+    <div class="admin-actions">
+      <%= link_to blog_admin_post_path(post) do %>
+          <i class="fa fa-eye"></i>
+      <% end %>
+      <%= link_to edit_blog_admin_post_path(post) do %>
+          <i class="fa fa-edit"></i>
+      <% end %>
+      <%= link_to blog_admin_post_path(post), :method => :delete, :data => {:confirm => 'Are you sure?'} do %>
+          <i class="fa fa-times-circle"></i>
+      <% end %>
+      <%= link_to 'Approve', approve_blog_admin_post_path(post.id), :id => "ap-#{post.id}", :remote => true unless post.status %>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li class="active">Blog Posts</li>
+    </ol>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Body</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <%= render 'blogging/blog_admin/posts/item', :post => post %>
+      <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

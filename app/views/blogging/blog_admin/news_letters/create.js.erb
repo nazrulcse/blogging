@@ -1,0 +1,7 @@
+if(<%= @message.present? %>) {
+    alert("<%= @message %>");
+}
+else {
+    $('.news-letter-lists').append("<%= escape_javascript(render 'item', :subscribe => @subscribe) %>");
+    $('#news_letter_email').val('')
+}

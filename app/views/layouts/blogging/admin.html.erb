@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Blog Admin </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= stylesheet_link_tag 'blogging/blog_admin' %>
+  <%= javascript_include_tag 'blogging/application' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="<%= "#{params[:controller]} #{params[:action]}" %>">
+
+<%= render 'blogging/shared/blog_admin/top_nav' %>
+
+<%= render 'blogging/shared/blog_admin/side_nav' %>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<script>
+    $('#calendar').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+
+    !function ($) {
+        $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+            $(this).find('em:first').toggleClass("glyphicon-minus");
+        });
+        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
+
+    $(window).on('resize', function () {
+        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+    })
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+</script>
+
+</body>
+</html>

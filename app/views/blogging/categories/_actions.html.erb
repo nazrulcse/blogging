@@ -1,0 +1,11 @@
+<li id="cat-<%= category.id %>">
+  <span class='cat-name'> <%= category.name %> </span>
+            <span class="pull-right">
+              <%= link_to edit_category_path(category), :remote => true do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to category_path(category), :method => :delete, :data => {:confirm => 'Are you sure?'}, :remote => true do %>
+                <i class="fa fa-times-circle"></i>
+              <% end %>
+            </span>
+</li>

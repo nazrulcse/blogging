@@ -1,0 +1,136 @@
+<div class="boxed">
+  <div class="meta push-down-20">
+    <%= image_tag @blog.image_url(:large), :class => 'wp-post-image' if @blog.image? %>
+    <div class="meta__container">
+      <div class="row">
+        <div class="col-xs-12  col-sm-8">
+          <div class="meta__info">
+            <span class="meta__author">
+              <%= image_tag('blogging/body.png', :height => 30, :width => 30) %>
+              <%= link_to get_user_name(@blog.user), author_profile_path(@blog.user_id) %> in
+              <%= link_to @blog.category.name, category_path(@blog.category.name) %>
+            </span>
+            <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span>
+              &nbsp; <%= @blog.created_at.strftime("%d. %B, %Y") %>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-12  col-sm-4">
+          <div class="meta__comments">
+            <a href="#comments">
+               <%= @blog.comments.count %> <i class="fa fa-comment"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="col-xs-10  col-xs-offset-1  col-md-8  col-md-offset-2">
+      <% @blog.tag_list.each do |tag| %>
+          <%= link_to tag, tag_path(tag), :class => 'tags__link' %>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="share-wrapper">
+    <div class="title">&mdash; Share It &mdash;</div>
+    <ul class="entry-share-list clearfix">
+      <li class="facebook_share">
+        <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://www.facebook.com/sharer.php?u=<%= blog_url(@blog.slug) %>&title=<%= @blog.title %>">
+          <span class="share-text"><i class="fa fa-facebook"></i>Facebook</span></a>
+      </li>
+      <li class="twitter_share">
+        <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://twitter.com/share?url=<%= blog_url(@blog.slug) %>&amp;title=<%= @blog.title %>"><i class="fa fa-twitter"></i>
+          <span class="share-text">Twitter</span></a>
+      </li>
+      <li class="google_share">
+        <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="https://plus.google.com/share?url=<%= blog_url(@blog.slug) %>&amp;title=<%= @blog.title %>"><i class="fa fa-google-plus"></i><span class="share-text">Google+</span></a>
+      </li>
+      <li class="linkedin_share">
+        <a target="_blank" rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<%= blog_url(@blog.slug) %>&amp;title=<%= @blog.title %>"><i class="fa fa-linkedin"></i><span class="share-text">Linkedin</span></a>
+      </li>
+      <li class="pinterest_share">
+        <a rel="nofollow" onclick="window.open(this.href, 'windowName', 'width=550, height=600, left=24, top=24, scrollbars, resizable'); return false;" href="http://pinterest.com/pin/create/button/?url=<%= blog_url(@blog.slug) %>&amp;media=http://4.bp.blogspot.com/-mZo6l0sTNK4/VV9LoDZxTSI/AAAAAAAABYE/VF631a6dTac/s72-c/30f11b261ba3bae82e4410e078f43e59.jpg&amp;description=<%= @blog.title %>"><i class="fa fa-pinterest"></i><span class="share-text">Pin It</span></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1  col-md-8  col-md-offset-2  push-down-60">
+      <div class="post-content">
+        <h1> <%= @blog.title %>  </h1>
+        <p>
+          <%= raw(@blog.description) %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="tags">
+        <h6>Comments</h6>
+        <hr>
+        <div class="comment-list" id="comments">
+          <%= render 'blogging/comments/comments_list', :blog => @blog %>
+        </div>
+        <%= render 'blogging/comments/form', :blog => @blog %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    authenticate = <%= current_user.present? %>
+    $(document).off('click', '.reply').on('click', '.reply', function () {
+        $('.write-reply').hide();
+        $('.comment_form').hide();
+        $(this).parents('.comments-item-wrapper').find(".write-reply").show();
+        if(!authenticate) {
+            check_for_authentication();
+        }
+    });
+
+    $(document).off('click', '.reply-cancel').on('click', '.reply-cancel', function () {
+        $('.write-reply').hide();
+        $('form').show();
+    });
+
+    $('#comment_comment').keyup(function() {
+        if(!authenticate) {
+            check_for_authentication();
+        }
+    });
+
+    $(document).off('click', '.reply-save').on('click', '.reply-save', function () {
+        var comment_id = $(this).attr('data-comment');
+        var reply = $(this).parents('.write-reply').find('.reply_input');
+        $.ajax({
+            url: "<%= blogging.root_path %>comments/" + comment_id + "/reply",
+            type: 'get',
+            data: {reply: reply.val()},
+            dataType: 'script',
+            success: function() {
+                reply.val('');
+                popupMessage('Your comments has been posted', 'alert-success');
+            },
+            error: function () {
+              popupMessage('Something wrong we will back to you soon', 'alert-danger');
+            }
+        })
+    });
+
+    function check_for_authentication() {
+        $.ajax({
+            url: "<%= authentication_path %>",
+            type: 'get',
+            dataType: 'script',
+            data: {url: window.location.href},
+            success:function() {
+                window.location = '<%= new_user_session_path %>';
+            }
+        });
+    }
+</script>

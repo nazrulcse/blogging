@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += %w( blogging/blog_admin.css )

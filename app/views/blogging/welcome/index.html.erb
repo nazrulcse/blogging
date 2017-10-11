@@ -1,0 +1,48 @@
+<div class="col-xs-12 col-md-8">
+  <% if params[:tag].present? %>
+      <div class="widget-author  boxed  push-down-30 category-title">
+        <h6> Blog List Tagged By: <%= params[:tag] %> </h6>
+      </div>
+  <%end%>
+  <div id="blog-lists">
+    <% @blogs.each do |post| %>
+        <%= render 'blogging/blogs/item', :post => post %>
+    <% end %>
+  </div>
+  <div class="loading-more">
+   <i class="fa fa-spin fa-circle-o-notch">  </i>
+  </div>
+</div>
+<div class="col-xs-12 col-md-4">
+  <%= render 'blogging/shared/sidebar' %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(window).scroll(function() {
+        blog_list = $('#blog-lists')
+        var blog_end = blog_list.offset().top + blog_list.height();
+        var scroll_pos = $(window).scrollTop() - blog_end + 400;
+        if(scroll_pos <= 50 && scroll_pos >= 5) {
+            load_more()
+        }
+
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            load_more()
+        }
+    });
+
+    function load_more() {
+        $.ajax({
+            url: '<%= load_more_blogs_path %>',
+            type: 'get',
+            dataType: 'script',
+            data: {offset: $("#blog-lists .blog-item").length, tag: '<%= params[:tag] %>'},
+            beforeSend: function() {
+                $('.loading-more').show();
+            },
+            error: function() {
+               $('.loading-more').hide();
+            }
+        });
+    }
+</script>

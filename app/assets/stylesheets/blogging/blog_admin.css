@@ -1,0 +1,48 @@
+/*
+*= require 'blogging/blog_admin/styles'
+*= require blogging/bootstrap
+*= require blogging/bootstrap-theme.min
+*= require blogging/token-input
+*= require blogging/blog_admin/font-wasome
+*= require blogging/blog_admin/blog_posts
+*= require blogging/blog_admin/public
+*= require blogging/blog_admin/settings
+*= require blogging/blog_admin/toggle
+*= require blogging/bootstrap-select
+*= require blogging/public
+*= require font-awesome
+*/
+
+.admin-top-nav {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+    opacity: 0.9;
+    transition: all 0.35s ease-in-out 0s;
+    background: #029cdc none repeat scroll 0 0;
+    border: none;
+}
+
+.token-input-list {
+    padding: 5px 0 !important;
+    width: 100% !important;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.btn.dropdown-toggle.btn-default {
+    background-image: none;
+}
