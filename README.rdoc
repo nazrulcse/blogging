@@ -11,7 +11,7 @@ A demo application can be found at http://blogror.com, and the source for this a
 Installing Blogror is easy. We assume you already have user model into your application and also installed devise into your application.
 
 = Specify Gem dependencies
-  gem 'blogging', :github => "codeeffic/blogror"
+  gem 'blogging', :github => "nazrulcse/blogror"
 
 = Run the installer
 
